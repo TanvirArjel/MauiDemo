@@ -16,7 +16,7 @@ namespace MauiBlazorApp
         public void Configure(IAppHostBuilder appBuilder)
         {
             appBuilder
-                .RegisterBlazorMauiWebView(typeof(Startup).Assembly)
+                .RegisterBlazorMauiWebView()
                 .UseMicrosoftExtensionsServiceProviderFactory()
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
