@@ -14,7 +14,6 @@ namespace MauiBlazorApp.Data
             _httpClient = httpClientFactory.CreateClient("WeatherApi");
         }
 
-
         public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
         {
             WeatherForecast[] weatherForecasts = await _httpClient.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");

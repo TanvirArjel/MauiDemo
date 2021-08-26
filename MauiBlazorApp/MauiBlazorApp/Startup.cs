@@ -29,7 +29,8 @@ namespace MauiBlazorApp
                     services.AddSingleton<WeatherForecastService>();
                     services.AddHttpClient("WeatherApi", c =>
                     {
-                        c.BaseAddress = new Uri("https://localhost:44393/");
+                        ////c.BaseAddress = new Uri("https://localhost:44393/");
+                        c.BaseAddress = new Uri("http://localhost:62042/");
                         c.DefaultRequestHeaders.Add("Accept", "application/json");
                         c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
                     });
