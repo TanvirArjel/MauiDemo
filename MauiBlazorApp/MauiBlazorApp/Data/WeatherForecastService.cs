@@ -1,4 +1,3 @@
-using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ namespace MauiBlazorApp.Data
             _httpClient = httpClientFactory.CreateClient("WeatherApi");
         }
 
-        public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
+        public async Task<WeatherForecast[]> GetForecastAsync()
         {
             WeatherForecast[] weatherForecasts = await _httpClient.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
             return weatherForecasts;

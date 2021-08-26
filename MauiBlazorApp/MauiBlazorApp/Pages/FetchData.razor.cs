@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MauiBlazorApp.Data;
 using Microsoft.AspNetCore.Components;
 
@@ -14,7 +13,7 @@ namespace MauiBlazorApp.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+            forecasts = await ForecastService.GetForecastAsync();
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Controls.Xaml;
+using Microsoft.Maui.Essentials;
 using Microsoft.Maui.Hosting;
 
 [assembly: XamlCompilationAttribute(XamlCompilationOptions.Compile)]
@@ -29,11 +30,33 @@ namespace MauiBlazorApp
                     services.AddSingleton<WeatherForecastService>();
                     services.AddHttpClient("WeatherApi", c =>
                     {
-                        ////c.BaseAddress = new Uri("https://localhost:44393/");
-                        c.BaseAddress = new Uri("http://localhost:62042/");
+                        string baseAddress = "https://localhost:44393/";
+
+                        if (DeviceInfo.Platform == DevicePlatform.Android)
+                        {
+                            baseAddress = "http://10.0.2.2:62042/";
+                        }
+                        else if (DeviceInfo.Platform == DevicePlatform.iOS)
+                        {
+                            baseAddress = "http://localhost:62042/";
+                        }
+
+                        c.BaseAddress = new Uri(baseAddress);
                         c.DefaultRequestHeaders.Add("Accept", "application/json");
                         c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
                     });
+                    ////.ConfigurePrimaryHttpMessageHandler(x => new HttpClientHandler()
+                    ////{
+                    ////    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+                    ////    {
+                    ////        if (cert.Issuer.Equals("CN=localhost"))
+                    ////        {
+                    ////            return true;
+                    ////        }
+
+                    ////        return errors == System.Net.Security.SslPolicyErrors.None;
+                    ////    }
+                    ////});
                 });
         }
     }
